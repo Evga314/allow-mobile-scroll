@@ -9,7 +9,6 @@ It allows scrollable GUI screens to be navigated with a simple **swipe up or dow
 * 📱 Swipe to scroll Minecraft GUI screens using a touchscreen.
 * 👆 Scroll by simply moving your finger up or down.
 * 🖱️ Normal left-click interactions continue to work.
-* 🔄 Scrolling does not reset when starting a new touch.
 * ⚙️ Configurable **Scroll Threshold**.
 
   * Default: **4 px**
