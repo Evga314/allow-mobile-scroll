@@ -9,12 +9,11 @@ It allows scrollable GUI screens to be navigated with a simple **swipe up or dow
 * 📱 Swipe to scroll Minecraft GUI screens using a touchscreen.
 * 👆 Scroll by simply moving your finger up or down.
 * 🖱️ Normal left-click interactions continue to work.
-* ⚙️ Configurable **Scroll Threshold**.
+* ⚙️ Configurable **Scroll Threshold** (soon)
 
   * Default: **4 px**
   * Minimum: **1 px**
-  * Maximum: **50 px**
-(Soon)
+  * Maximum: **50 px**  
 
 * 🧩 Partial support for non-vanilla scrolling interfaces used by mods, including:
 
@@ -38,11 +37,11 @@ Support for custom scrolling implementations is currently being developed. Some 
 * **Minecraft 26.3**
 * **Fabric Loader 0.19.5**
 * **Fabric API 0.161.0+26.3**
-* **Mod Menu 21.0.0-beta.1** — required for accessing the mod's configuration screen
+* **Mod Menu 21.0.0-beta.1** — required for accessing the mod's configuration screen (soon)
 
 ## Configuration
 
-The mod's settings can be accessed through **Mod Menu**.
+The mod's settings can be accessed through **Mod Menu** (soon)
 
 ### Scroll Threshold
 
