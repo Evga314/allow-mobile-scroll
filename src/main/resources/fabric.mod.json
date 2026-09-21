@@ -1,0 +1,34 @@
+{
+	"schemaVersion": 1,
+	"id": "dragscroll",
+	"version": "${version}",
+	"name": "Drag Scroll",
+	"description": "Enables scrolling menus and lists by holding left mouse button and dragging. Designed for mobile Java Minecraft launchers.",
+	"authors": [
+		"Evga314"
+	],
+	"contact": {},
+	"license": "MIT",
+	"icon": "assets/dragscroll/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"ru.evga314.dragscroll.DragScrollClient"
+		],
+		"modmenu": [
+			"ru.evga314.dragscroll.modmenu.DragScrollModMenuApi"
+		]
+	},
+	"mixins": [
+		{
+			"config": "dragscroll.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.19.5",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}

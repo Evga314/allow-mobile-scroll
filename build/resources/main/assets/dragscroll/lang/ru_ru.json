@@ -1,0 +1,5 @@
+{
+  "dragscroll.config.title": "Настройки Drag Scroll",
+  "dragscroll.config.threshold": "Порог скролла (1–50 пикс.)",
+  "dragscroll.config.save": "Сохранить"
+}
