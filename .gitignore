@@ -1,0 +1,5 @@
+build
+.idea
+.eclipse
+.gradle
+run
