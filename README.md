@@ -31,7 +31,6 @@ It allows scrollable GUI screens to be navigated with a simple **swipe up or dow
 * **Mod Loader:** Fabric
 * **Environment:** Client-side
 
-The mod is primarily designed for mobile Java launchers where touchscreen input is translated into mouse events.
 
 Support for custom scrolling implementations is currently being developed. Some mods may use their own GUI scrolling systems and may require additional compatibility work.
 
