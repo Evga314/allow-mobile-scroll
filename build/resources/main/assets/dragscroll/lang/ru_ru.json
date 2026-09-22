@@ -1,0 +1,15 @@
+{
+  "dragscroll.config.title": "Настройки Allow mobile scroll",
+  "dragscroll.config.threshold.label": "Порог",
+  "dragscroll.config.threshold": "Порог скролла (1–50 пикс.)",
+  "dragscroll.config.threshold.description": "Порог начала скролла в пикселях. Допустимое значение: от 1 до 50. По умолчанию: 4. Чем больше значение, тем больше задержка перед тем, как игра распознает касание как скролл.",
+  "dragscroll.config.inertia.label": "Сила инерции",
+  "dragscroll.config.inertia": "Сила инерции (0–200)",
+  "dragscroll.config.inertia.description": "Сила инерции. По умолчанию — 70. Диапазон: от 0 до 200.",
+  "dragscroll.config.inertia.reset": "↺",
+  "dragscroll.config.save": "Сохранить",
+  "dragscroll.config.reset": "Сбросить",
+  "dragscroll.config.debug.on": "Отладка: ВКЛ",
+  "dragscroll.config.debug.off": "Отладка: ВЫКЛ",
+  "dragscroll.config.debug.description": "⚠ Осторожно: включение этой функции будет писать в лог очень много данных о касаниях мыши. Включается только для отладки, чтобы мы могли посмотреть лог и исправить баг. Для обычного использования она не нужна."
+}

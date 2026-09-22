@@ -1,0 +1,15 @@
+{
+  "dragscroll.config.title": "Ajustes de Allow mobile scroll",
+  "dragscroll.config.threshold.label": "Umbral",
+  "dragscroll.config.threshold": "Umbral de desplazamiento (1–50 px)",
+  "dragscroll.config.threshold.description": "Umbral de inicio del desplazamiento en píxeles. Rango: 1–50. Predeterminado: 4. Un valor más alto retrasa el reconocimiento de un toque como desplazamiento.",
+  "dragscroll.config.inertia.label": "Fuerza de inercia",
+  "dragscroll.config.inertia": "Fuerza de inercia (0–200)",
+  "dragscroll.config.inertia.description": "Fuerza de inercia. Predeterminado: 70. Rango: de 0 a 200.",
+  "dragscroll.config.inertia.reset": "↺",
+  "dragscroll.config.save": "Guardar",
+  "dragscroll.config.reset": "Restablecer",
+  "dragscroll.config.debug.on": "Depuración: ON",
+  "dragscroll.config.debug.off": "Depuración: OFF",
+  "dragscroll.config.debug.description": "⚠ Cuidado: al activarlo se escribe una gran cantidad de datos de ratón/tacto en el registro. Actívalo solo para depurar, revisar el registro y corregir un error. No es necesario para el uso normal."
+}

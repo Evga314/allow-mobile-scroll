@@ -1,0 +1,15 @@
+{
+  "dragscroll.config.title": "Allow mobile scroll 설정",
+  "dragscroll.config.threshold.label": "임계값",
+  "dragscroll.config.threshold": "스크롤 임계값 (1–50 px)",
+  "dragscroll.config.threshold.description": "스크롤 시작 픽셀 임계값. 범위: 1–50. 기본값: 4. 값이 클수록 터치를 스크롤로 인식하기까지의 지연이 길어집니다.",
+  "dragscroll.config.inertia.label": "관성 세기",
+  "dragscroll.config.inertia": "관성 세기 (0–200)",
+  "dragscroll.config.inertia.description": "관성 세기. 기본값: 70. 범위: 0에서 200.",
+  "dragscroll.config.inertia.reset": "↺",
+  "dragscroll.config.save": "저장",
+  "dragscroll.config.reset": "초기화",
+  "dragscroll.config.debug.on": "디버그: ON",
+  "dragscroll.config.debug.off": "디버그: OFF",
+  "dragscroll.config.debug.description": "⚠ 주의: 활성화하면 마우스/터치 데이터가 로그에 매우 많이 기록됩니다. 로그를 보고 버그를 고치기 위한 디버깅에만 사용하세요. 일반 사용에는 필요 없습니다."
+}

@@ -1,0 +1,15 @@
+{
+  "dragscroll.config.title": "Allow mobile scroll Ayarları",
+  "dragscroll.config.threshold.label": "Eşik",
+  "dragscroll.config.threshold": "Kaydırma eşiği (1–50 px)",
+  "dragscroll.config.threshold.description": "Kaydırma başlangıç eşiği (piksel). Aralık: 1–50. Varsayılan: 4. Daha yüksek değer, dokunmanın kaydırma olarak algılanmasını geciktirir.",
+  "dragscroll.config.inertia.label": "Atalet gücü",
+  "dragscroll.config.inertia": "Atalet gücü (0–200)",
+  "dragscroll.config.inertia.description": "Atalet gücü. Varsayılan: 70. Aralık: 0 ile 200 arası.",
+  "dragscroll.config.inertia.reset": "↺",
+  "dragscroll.config.save": "Kaydet",
+  "dragscroll.config.reset": "Sıfırla",
+  "dragscroll.config.debug.on": "Hata ayıklama: AÇIK",
+  "dragscroll.config.debug.off": "Hata ayıklama: KAPALI",
+  "dragscroll.config.debug.description": "⚠ Dikkat: etkinleştirmek fare/dokunma verilerinin büyük kısmını günlüğe yazar. Yalnızca günlüğü inceleyip hatayı düzeltmek için hata ayıklamada kullanın. Normal kullanımda gerekli değildir."
+}
