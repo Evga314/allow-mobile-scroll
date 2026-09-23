@@ -1,0 +1,12 @@
+{
+	"required": false,
+	"package": "ru.evga314.dragscroll.mixin",
+	"compatibilityLevel": "JAVA_25",
+	"client": [
+		"ClothSmoothScrollMixin",
+		"ClothConfigInitializerMixin"
+	],
+	"injectors": {
+		"defaultRequire": 0
+	}
+}

@@ -1,0 +1,14 @@
+{
+	"required": false,
+	"package": "ru.evga314.dragscroll.mixin",
+	"compatibilityLevel": "JAVA_25",
+	"client": [
+		"SodiumPageListMixin",
+		"SodiumVideoSettingsMixin",
+		"SodiumScrollbarMixin",
+		"SodiumAbstractWidgetMixin"
+	],
+	"injectors": {
+		"defaultRequire": 0
+	}
+}

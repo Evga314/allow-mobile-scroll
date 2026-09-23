@@ -1,0 +1,19 @@
+{
+  "dragscroll.config.title": "Ustawienia Allow mobile scroll",
+  "dragscroll.config.threshold.label": "Próg",
+  "dragscroll.config.threshold": "Próg przewijania (1–50 px)",
+  "dragscroll.config.threshold.description": "Próg rozpoczęcia przewijania w pikselach. Zakres: 1–50. Domyślnie: 4. Wyższa wartość opóźnia rozpoznanie dotyku jako przewijania.",
+  "dragscroll.config.inertia.label": "Siła inercji",
+  "dragscroll.config.inertia": "Siła inercji (0–200)",
+  "dragscroll.config.inertia.description": "Siła inercji. Domyślnie: 70. Zakres: od 0 do 200.",
+  "dragscroll.config.inertia.reset": "↺",
+  "dragscroll.config.save": "Zapisz",
+  "dragscroll.config.reset": "Resetuj",
+  "dragscroll.config.debug.on": "Debug: WŁ",
+  "dragscroll.config.debug.off": "Debug: WYŁ",
+  "dragscroll.config.debug.description": "⚠ Uwaga: włączenie zapisuje bardzo dużo danych myszy/dotyku do logu. Włącz tylko do debugowania, aby przejrzeć log i naprawić błąd. Nie jest potrzebne przy zwykłym użyciu.",
+  "dragscroll.config.threshold.reset": "↺",
+  "dragscroll.config.xaero_slider.description": "Pasek przewijania dla Xaero's World Map",
+  "dragscroll.config.xaero_slider.on": "Pasek Xaero World Map: WŁ",
+  "dragscroll.config.xaero_slider.off": "Pasek Xaero World Map: WYŁ"
+}

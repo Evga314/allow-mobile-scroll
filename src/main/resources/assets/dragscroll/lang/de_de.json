@@ -1,0 +1,19 @@
+{
+  "dragscroll.config.title": "Allow mobile scroll Einstellungen",
+  "dragscroll.config.threshold.label": "Schwelle",
+  "dragscroll.config.threshold": "Scroll-Schwelle (1–50 px)",
+  "dragscroll.config.threshold.description": "Schwelle für den Scroll-Beginn in Pixeln. Bereich: 1–50. Standard: 4. Höhere Werte verzögern die Erkennung einer Berührung als Scrollen.",
+  "dragscroll.config.inertia.label": "Trägheitsstärke",
+  "dragscroll.config.inertia": "Trägheitsstärke (0–200)",
+  "dragscroll.config.inertia.description": "Trägheitsstärke. Standard: 70. Bereich: von 0 bis 200.",
+  "dragscroll.config.inertia.reset": "↺",
+  "dragscroll.config.save": "Speichern",
+  "dragscroll.config.reset": "Zurücksetzen",
+  "dragscroll.config.debug.on": "Debug: AN",
+  "dragscroll.config.debug.off": "Debug: AUS",
+  "dragscroll.config.debug.description": "⚠ Achtung: Das Aktivieren schreibt sehr viele Maus-/Touch-Daten ins Log. Nur zum Debuggen aktivieren, um das Log zu prüfen und Fehler zu beheben. Für den normalen Gebrauch nicht nötig.",
+  "dragscroll.config.threshold.reset": "↺",
+  "dragscroll.config.xaero_slider.description": "Scrollleiste für Xaero's World Map",
+  "dragscroll.config.xaero_slider.on": "Xaero-World-Map-Scrollleiste: AN",
+  "dragscroll.config.xaero_slider.off": "Xaero-World-Map-Scrollleiste: AUS"
+}

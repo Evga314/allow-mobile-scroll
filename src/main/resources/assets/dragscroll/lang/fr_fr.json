@@ -1,0 +1,19 @@
+{
+  "dragscroll.config.title": "Paramètres Allow mobile scroll",
+  "dragscroll.config.threshold.label": "Seuil",
+  "dragscroll.config.threshold": "Seuil de défilement (1–50 px)",
+  "dragscroll.config.threshold.description": "Seuil de début de défilement en pixels. Plage : 1–50. Par défaut : 4. Une valeur plus élevée retarde la reconnaissance d’un toucher comme un défilement.",
+  "dragscroll.config.inertia.label": "Force d’inertie",
+  "dragscroll.config.inertia": "Force d’inertie (0–200)",
+  "dragscroll.config.inertia.description": "Force d’inertie. Par défaut : 70. Plage : de 0 à 200.",
+  "dragscroll.config.inertia.reset": "↺",
+  "dragscroll.config.save": "Enregistrer",
+  "dragscroll.config.reset": "Réinitialiser",
+  "dragscroll.config.debug.on": "Débogage : ON",
+  "dragscroll.config.debug.off": "Débogage : OFF",
+  "dragscroll.config.debug.description": "⚠ Attention : l’activation écrit une très grande quantité de données souris/toucher dans le journal. À activer uniquement pour le débogage afin de consulter le journal et corriger un bug. Inutile en usage normal.",
+  "dragscroll.config.threshold.reset": "↺",
+  "dragscroll.config.xaero_slider.description": "Barre de défilement pour Xaero's World Map",
+  "dragscroll.config.xaero_slider.on": "Barre Xaero World Map : OUI",
+  "dragscroll.config.xaero_slider.off": "Barre Xaero World Map : NON"
+}

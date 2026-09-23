@@ -1,0 +1,19 @@
+{
+  "dragscroll.config.title": "Allow mobile scroll Settings",
+  "dragscroll.config.threshold.label": "Threshold",
+  "dragscroll.config.threshold": "Scroll threshold (1-50 px)",
+  "dragscroll.config.threshold.description": "Scroll start threshold in pixels. Range: 1-50. Default: 4. Higher values delay recognizing a touch as a scroll.",
+  "dragscroll.config.inertia.label": "Inertia strength",
+  "dragscroll.config.inertia": "Inertia strength (0-200)",
+  "dragscroll.config.inertia.description": "Inertia strength. Default: 70. Range: from 0 to 200.",
+  "dragscroll.config.inertia.reset": "↺",
+  "dragscroll.config.save": "Save",
+  "dragscroll.config.reset": "Reset",
+  "dragscroll.config.debug.on": "Debug: ON",
+  "dragscroll.config.debug.off": "Debug: OFF",
+  "dragscroll.config.debug.description": "⚠ Caution: enabling this will write a very large amount of mouse/touch data to the log. Enable only for debugging so we can look at the log and fix a bug. It is not needed for normal use.",
+  "dragscroll.config.threshold.reset": "↺",
+  "dragscroll.config.xaero_slider.description": "Scrollbar for Xaero's World Map",
+  "dragscroll.config.xaero_slider.on": "Xaero World Map scrollbar: ON",
+  "dragscroll.config.xaero_slider.off": "Xaero World Map scrollbar: OFF"
+}

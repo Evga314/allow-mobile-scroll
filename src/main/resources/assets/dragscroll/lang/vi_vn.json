@@ -1,0 +1,19 @@
+{
+  "dragscroll.config.title": "Cài đặt Allow mobile scroll",
+  "dragscroll.config.threshold.label": "Ngưỡng",
+  "dragscroll.config.threshold": "Ngưỡng cuộn (1–50 px)",
+  "dragscroll.config.threshold.description": "Ngưỡng bắt đầu cuộn theo pixel. Phạm vi: 1–50. Mặc định: 4. Giá trị cao hơn làm chậm việc nhận diện chạm là cuộn.",
+  "dragscroll.config.inertia.label": "Độ mạnh quán tính",
+  "dragscroll.config.inertia": "Độ mạnh quán tính (0–200)",
+  "dragscroll.config.inertia.description": "Độ mạnh quán tính. Mặc định: 70. Phạm vi: từ 0 đến 200.",
+  "dragscroll.config.inertia.reset": "↺",
+  "dragscroll.config.save": "Lưu",
+  "dragscroll.config.reset": "Đặt lại",
+  "dragscroll.config.debug.on": "Gỡ lỗi: BẬT",
+  "dragscroll.config.debug.off": "Gỡ lỗi: TẮT",
+  "dragscroll.config.debug.description": "⚠ Cảnh báo: bật tùy chọn này sẽ ghi rất nhiều dữ liệu chuột/chạm vào nhật ký. Chỉ bật khi gỡ lỗi để xem nhật ký và sửa lỗi. Không cần thiết khi dùng bình thường.",
+  "dragscroll.config.threshold.reset": "↺",
+  "dragscroll.config.xaero_slider.description": "Thanh cuộn cho Xaero's World Map",
+  "dragscroll.config.xaero_slider.on": "Thanh cuộn Xaero World Map: BẬT",
+  "dragscroll.config.xaero_slider.off": "Thanh cuộn Xaero World Map: TẮT"
+}
