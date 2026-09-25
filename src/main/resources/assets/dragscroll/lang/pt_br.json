@@ -1,0 +1,19 @@
+{
+  "dragscroll.config.title": "Configurações do Allow mobile scroll",
+  "dragscroll.config.threshold.label": "Limiar",
+  "dragscroll.config.threshold": "Limiar de rolagem (1–50 px)",
+  "dragscroll.config.threshold.description": "Limiar de início da rolagem em pixels. Intervalo: 1–50. Padrão: 4. Valores maiores atrasam o reconhecimento do toque como rolagem.",
+  "dragscroll.config.inertia.label": "Força da inércia",
+  "dragscroll.config.inertia": "Força da inércia (0–200)",
+  "dragscroll.config.inertia.description": "Força da inércia. Padrão: 70. Intervalo: de 0 a 200.",
+  "dragscroll.config.inertia.reset": "↺",
+  "dragscroll.config.save": "Salvar",
+  "dragscroll.config.reset": "Redefinir",
+  "dragscroll.config.debug.on": "Depuração: ON",
+  "dragscroll.config.debug.off": "Depuração: OFF",
+  "dragscroll.config.debug.description": "⚠ Cuidado: ativar isso grava uma grande quantidade de dados de mouse/toque no log. Use apenas para depuração, para analisar o log e corrigir bugs. Não é necessário no uso normal.",
+  "dragscroll.config.threshold.reset": "↺",
+  "dragscroll.config.xaero_slider.description": "Barra de rolagem para Xaero's World Map",
+  "dragscroll.config.xaero_slider.on": "Barra do Xaero World Map: LIG",
+  "dragscroll.config.xaero_slider.off": "Barra do Xaero World Map: DES"
+}

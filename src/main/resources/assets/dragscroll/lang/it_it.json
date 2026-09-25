@@ -1,0 +1,19 @@
+{
+  "dragscroll.config.title": "Impostazioni Allow mobile scroll",
+  "dragscroll.config.threshold.label": "Soglia",
+  "dragscroll.config.threshold": "Soglia di scorrimento (1–50 px)",
+  "dragscroll.config.threshold.description": "Soglia di inizio scorrimento in pixel. Intervallo: 1–50. Predefinito: 4. Valori più alti ritardano il riconoscimento di un tocco come scorrimento.",
+  "dragscroll.config.inertia.label": "Forza di inerzia",
+  "dragscroll.config.inertia": "Forza di inerzia (0–200)",
+  "dragscroll.config.inertia.description": "Forza di inerzia. Predefinito: 70. Intervallo: da 0 a 200.",
+  "dragscroll.config.inertia.reset": "↺",
+  "dragscroll.config.save": "Salva",
+  "dragscroll.config.reset": "Reimposta",
+  "dragscroll.config.debug.on": "Debug: ON",
+  "dragscroll.config.debug.off": "Debug: OFF",
+  "dragscroll.config.debug.description": "⚠ Attenzione: l’attivazione scrive una grande quantità di dati mouse/tocco nel log. Usalo solo per il debug, per controllare il log e correggere un bug. Non serve per l’uso normale.",
+  "dragscroll.config.threshold.reset": "↺",
+  "dragscroll.config.xaero_slider.description": "Barra di scorrimento per Xaero's World Map",
+  "dragscroll.config.xaero_slider.on": "Barra Xaero World Map: ON",
+  "dragscroll.config.xaero_slider.off": "Barra Xaero World Map: OFF"
+}

@@ -1,0 +1,19 @@
+{
+  "dragscroll.config.title": "Allow mobile scroll-instellingen",
+  "dragscroll.config.threshold.label": "Drempel",
+  "dragscroll.config.threshold": "Scroldrempel (1–50 px)",
+  "dragscroll.config.threshold.description": "Drempel voor start van scrollen in pixels. Bereik: 1–50. Standaard: 4. Hogere waarden vertragen herkenning van een aanraking als scrollen.",
+  "dragscroll.config.inertia.label": "Traagheidskracht",
+  "dragscroll.config.inertia": "Traagheidskracht (0–200)",
+  "dragscroll.config.inertia.description": "Traagheidskracht. Standaard: 70. Bereik: van 0 tot 200.",
+  "dragscroll.config.inertia.reset": "↺",
+  "dragscroll.config.save": "Opslaan",
+  "dragscroll.config.reset": "Resetten",
+  "dragscroll.config.debug.on": "Debug: AAN",
+  "dragscroll.config.debug.off": "Debug: UIT",
+  "dragscroll.config.debug.description": "⚠ Let op: inschakelen schrijft zeer veel muis-/aanraakgegevens naar het log. Alleen inschakelen voor debuggen om het log te bekijken en een bug te verhelpen. Niet nodig voor normaal gebruik.",
+  "dragscroll.config.threshold.reset": "↺",
+  "dragscroll.config.xaero_slider.description": "Schuifbalk voor Xaero's World Map",
+  "dragscroll.config.xaero_slider.on": "Xaero World Map-schuifbalk: AAN",
+  "dragscroll.config.xaero_slider.off": "Xaero World Map-schuifbalk: UIT"
+}

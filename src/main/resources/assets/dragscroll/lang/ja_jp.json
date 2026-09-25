@@ -1,0 +1,19 @@
+{
+  "dragscroll.config.title": "Allow mobile scroll 設定",
+  "dragscroll.config.threshold.label": "しきい値",
+  "dragscroll.config.threshold": "スクロールしきい値（1–50 px）",
+  "dragscroll.config.threshold.description": "スクロール開始のピクセルしきい値。範囲：1–50。デフォルト：4。値が大きいほど、タッチがスクロールと認識されるまでの遅れが長くなります。",
+  "dragscroll.config.inertia.label": "慣性の強さ",
+  "dragscroll.config.inertia": "慣性の強さ（0–200）",
+  "dragscroll.config.inertia.description": "慣性の強さ。デフォルト：70。範囲：0～200。",
+  "dragscroll.config.inertia.reset": "↺",
+  "dragscroll.config.save": "保存",
+  "dragscroll.config.reset": "リセット",
+  "dragscroll.config.debug.on": "デバッグ：ON",
+  "dragscroll.config.debug.off": "デバッグ：OFF",
+  "dragscroll.config.debug.description": "⚠ 注意：有効にするとマウス／タッチの大量データがログに書き込まれます。ログを確認して不具合を直すデバッグ時のみ使ってください。通常利用では不要です。",
+  "dragscroll.config.threshold.reset": "↺",
+  "dragscroll.config.xaero_slider.description": "Xaero's World Map のスクロールバー",
+  "dragscroll.config.xaero_slider.on": "Xaero World Map スクロールバー: オン",
+  "dragscroll.config.xaero_slider.off": "Xaero World Map スクロールバー: オフ"
+}
