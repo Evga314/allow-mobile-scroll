@@ -1,0 +1,13 @@
+{
+	"required": false,
+	"package": "ru.evga314.dragscroll.mixin",
+	"plugin": "ru.evga314.dragscroll.loader.DragScrollMixinPlugin",
+	"compatibilityLevel": "JAVA_25",
+	"client": [
+		"compat.trender.TrenderCottonScreenMixin",
+		"compat.trender.TrenderScrollBarMixin"
+	],
+	"injectors": {
+		"defaultRequire": 0
+	}
+}

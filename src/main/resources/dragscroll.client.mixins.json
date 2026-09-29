@@ -1,0 +1,22 @@
+{
+	"required": true,
+	"package": "ru.evga314.dragscroll.mixin",
+	"plugin": "ru.evga314.dragscroll.loader.DragScrollMixinPlugin",
+	"compatibilityLevel": "JAVA_25",
+	"client": [
+		"MouseHandlerMixin",
+		"KeyboardHandlerMixin",
+		"widget.AbstractScrollAreaMixin",
+		"widget.AbstractSelectionListMixin",
+		"widget.AbstractWidgetMixin",
+		"widget.AbstractButtonMixin",
+		"screen.AbstractContainerScreenAccessor",
+		"screen.CreativeModeInventoryScreenAccessor",
+		"screen.MerchantScreenMixin",
+		"screen.PageButtonMixin",
+		"screen.RecipeBookPageMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
