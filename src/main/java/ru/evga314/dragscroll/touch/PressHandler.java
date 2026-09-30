@@ -437,7 +437,7 @@ public final class PressHandler {
                 && !Widgets.hasMultipleScrollLists(screen)
                 && !ChatCompat.isOutsideChatArea(screen, x, y)) {
             TouchState.lockedArea = null;
-            TouchState.fallbackInverted = ScreenScroll.isInverted(screen, x);
+            TouchState.fallbackInverted = ScreenKind.of(screen).invertedScroll;
             if (ScreenKind.of(screen).sodium) {
                 SodiumCompat.lockX = x;
                 SodiumCompat.lockY = y;

@@ -282,7 +282,7 @@ public final class FrameHandler {
         if (area == null) {
             // Fractional mouseScrolled units: whole 12 px notches made the
             // drag and the scroll bar thumb jerky.
-            boolean inverted = ScreenScroll.isInverted(screen, TouchState.pressX);
+            boolean inverted = kind.invertedScroll;
             TouchState.fallbackInverted = inverted;
             ScreenScroll.dispatch(screen, Inertia.guiX, Inertia.guiY, ScreenScroll.unitsFor(screen, step, inverted));
             return;

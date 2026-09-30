@@ -48,7 +48,7 @@ public final class Drags {
         TouchState.moved = false;
         TouchState.lockedArea = null;
         TouchState.fallbackScreen = screen;
-        TouchState.fallbackInverted = ScreenScroll.isInverted(screen, Double.NaN);
+        TouchState.fallbackInverted = ScreenKind.of(screen).invertedScroll;
         if (ScreenKind.of(screen).sodium) {
             SodiumCompat.contentLocked = true;
         }

@@ -40,19 +40,6 @@ public final class ScreenScroll {
     }
 
     /**
-     * The screen's mouseScrolled runs opposite to a vanilla list. On Cloth,
-     * the band of its scroll bar is the exception: a drag there moves the bar.
-     */
-    public static boolean isInverted(Screen screen, double pressX) {
-        boolean inverted = ScreenKind.of(screen).invertedScroll;
-        if (inverted && ScreenKind.of(screen).cloth && !Double.isNaN(pressX) && screen.width > 0
-                && pressX >= screen.width - ClothCompat.BAR_BAND_WIDTH) {
-            return false;
-        }
-        return inverted;
-    }
-
-    /**
      * Sends {@code units} to the screen at (x, y). TRender's WScrollBar casts
      * the delta to int, so it only gets whole units (the rest is carried).
      */

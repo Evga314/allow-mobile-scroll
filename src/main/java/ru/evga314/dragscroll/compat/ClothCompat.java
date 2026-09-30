@@ -26,7 +26,7 @@ public final class ClothCompat {
      * Width of the right-hand band of a Cloth screen that belongs to the
      * scroll bar (the bar plus a fat-finger margin).
      */
-    public static final int BAR_BAND_WIDTH = 120;
+    private static final int BAR_BAND_WIDTH = 120;
 
     /**
      * How long after a press the touch still counts as held when the
@@ -105,9 +105,37 @@ public final class ClothCompat {
         return findScrollbar(screen, x, y, new IdentityHashMap<>());
     }
 
-    /** The finger is on the bar, or anywhere in the band at the right edge. */
+    /**
+     * The finger is on the bar, or in the band at the right edge, but not on
+     * a widget of a row. Text fields and reset buttons of the entries also
+     * sit in that band: a swipe that starts on one of them scrolls the list
+     * like any other, instead of dragging the bar.
+     */
     public static boolean isBarBand(Screen screen, double x, double y) {
-        return isScrollbarHover(screen, x, y) || x >= screen.width - BAR_BAND_WIDTH;
+        if (isScrollbarHover(screen, x, y)) {
+            return true;
+        }
+        return x >= screen.width - BAR_BAND_WIDTH && !isOverRowWidget(screen, x, y);
+    }
+
+    /** A plain widget (text field, button, slider) of the screen is under the point. */
+    private static boolean isOverRowWidget(GuiEventListener node, double x, double y) {
+        if (node instanceof ContainerEventHandler container) {
+            try {
+                for (GuiEventListener child : container.children()) {
+                    if (isOverRowWidget(child, x, y)) {
+                        return true;
+                    }
+                }
+            } catch (Throwable ignored) {
+            }
+            return false;
+        }
+        try {
+            return node instanceof AbstractWidget widget && widget.visible && widget.isMouseOver(x, y);
+        } catch (Throwable ignored) {
+            return false;
+        }
     }
 
     private static boolean isListWidget(Object node) {
