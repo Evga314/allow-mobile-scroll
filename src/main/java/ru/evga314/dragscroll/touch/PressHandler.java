@@ -285,7 +285,7 @@ public final class PressHandler {
         if (kind.cloth && ClothCompat.isBarBand(screen, x, y)) {
             grabCustomThumb(mouse);
             ClothCompat.applyThumb(screen, y);
-            if (Debug.on()) Debug.log("PressHandler.onButton", "CLOTH_THUMB_GRAB");
+            if (Debug.on()) Debug.log("PressHandler.onButton", "CLOTH_THUMB_GRAB x=" + x + " y=" + y);
             return;
         }
         if (kind.shulkerConfig && ShulkerCompat.isScrollbarHover(screen, x, y)) {

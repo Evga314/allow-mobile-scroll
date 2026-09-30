@@ -100,42 +100,48 @@ public final class ClothCompat {
     // Scroll bar
     // =====================================================================
 
-    /** The finger is on (or right next to) the bar of Cloth's entry list. */
+    /**
+     * The finger is on (or right next to) the bar of the entry list, and
+     * right of everything the rows contain.
+     */
     public static boolean isScrollbarHover(Screen screen, double x, double y) {
-        return findScrollbar(screen, x, y, new IdentityHashMap<>());
+        return findScrollbar(screen, x, y, new IdentityHashMap<>()) && x > rowContentRight(screen);
     }
 
     /**
-     * The finger is on the bar, or in the band at the right edge, but not on
-     * a widget of a row. Text fields and reset buttons of the entries also
-     * sit in that band: a swipe that starts on one of them scrolls the list
-     * like any other, instead of dragging the bar.
+     * The finger is on the bar, or in the band at the right screen edge that
+     * is free of row content. The rows keep their text fields and reset
+     * buttons on the right, inside that band: a swipe that starts on a row
+     * (on a field, or in the gaps around it) scrolls the list like any other
+     * instead of dragging the bar.
      */
     public static boolean isBarBand(Screen screen, double x, double y) {
-        if (isScrollbarHover(screen, x, y)) {
-            return true;
-        }
-        return x >= screen.width - BAR_BAND_WIDTH && !isOverRowWidget(screen, x, y);
+        return isScrollbarHover(screen, x, y)
+                || x >= screen.width - BAR_BAND_WIDTH && x > rowContentRight(screen);
     }
 
-    /** A plain widget (text field, button, slider) of the screen is under the point. */
-    private static boolean isOverRowWidget(GuiEventListener node, double x, double y) {
+    /**
+     * Right edge of the rightmost widget in the rows of the entry list (the
+     * reset buttons), or negative infinity when the list has none.
+     */
+    private static double rowContentRight(Screen screen) {
+        Object list = findListWidget(screen, new IdentityHashMap<>());
+        return list instanceof GuiEventListener root ? rightmostWidgetEdge(root) : Double.NEGATIVE_INFINITY;
+    }
+
+    private static double rightmostWidgetEdge(GuiEventListener node) {
+        double right = Double.NEGATIVE_INFINITY;
         if (node instanceof ContainerEventHandler container) {
             try {
                 for (GuiEventListener child : container.children()) {
-                    if (isOverRowWidget(child, x, y)) {
-                        return true;
-                    }
+                    right = Math.max(right, rightmostWidgetEdge(child));
                 }
             } catch (Throwable ignored) {
             }
-            return false;
+        } else if (node instanceof AbstractWidget widget && widget.visible) {
+            right = widget.getX() + widget.getWidth();
         }
-        try {
-            return node instanceof AbstractWidget widget && widget.visible && widget.isMouseOver(x, y);
-        } catch (Throwable ignored) {
-            return false;
-        }
+        return right;
     }
 
     private static boolean isListWidget(Object node) {
