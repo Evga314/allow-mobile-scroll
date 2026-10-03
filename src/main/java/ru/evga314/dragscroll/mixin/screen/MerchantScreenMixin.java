@@ -1,6 +1,6 @@
 package ru.evga314.dragscroll.mixin.screen;
 
-import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.MerchantScreen;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -39,8 +39,8 @@ public abstract class MerchantScreenMixin {
         return !SafeMode.bypass() && DragScrollConfig.isMerchantWideBarEnabled() ? DRAGSCROLL_WIDE_WIDTH : vanilla;
     }
 
-    /** The thumb, the disabled thumb and the hover box in extractScroller. */
-    @ModifyConstant(method = "extractScroller", constant = @Constant(intValue = 6), require = 0)
+    /** The thumb, the disabled thumb and the hover box in renderScroller. */
+    @ModifyConstant(method = "renderScroller", constant = @Constant(intValue = 6), require = 0)
     private int dragscroll$wideScrollerRender(int vanilla) {
         return dragscroll$barWidth(vanilla);
     }
@@ -55,8 +55,8 @@ public abstract class MerchantScreenMixin {
      * The 6 px track groove is part of the villager.png background. A darker
      * track the full width of the wide bar is drawn over it, before the thumb.
      */
-    @Inject(method = "extractContents", at = @At("HEAD"))
-    private void dragscroll$drawWideTrack(GuiGraphicsExtractor graphics, int mouseX, int mouseY,
+    @Inject(method = "renderContents", at = @At("HEAD"))
+    private void dragscroll$drawWideTrack(GuiGraphics graphics, int mouseX, int mouseY,
                                           float partialTick, CallbackInfo ci) {
         if (SafeMode.bypass() || !DragScrollConfig.isMerchantWideBarEnabled()) {
             return;

@@ -85,7 +85,7 @@ public abstract class MouseHandlerMixin implements MouseHandlerAccess {
     }
 
     @Inject(method = "onMove", at = @At("HEAD"), cancellable = true)
-    private void dragscroll$onMove(long handle, double xpos, double ypos, double xrel, double yrel, CallbackInfo ci) {
+    private void dragscroll$onMove(long handle, double xpos, double ypos, CallbackInfo ci) {
         if (SafeMode.bypass()) {
             return;
         }

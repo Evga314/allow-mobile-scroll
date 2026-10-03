@@ -1,6 +1,6 @@
 package ru.evga314.dragscroll.gui;
 
-import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
@@ -176,7 +176,7 @@ public final class DragScrollConfigScreen extends Screen {
             String descKey;
             if (toggle == null) {
                 Button setup = Button.builder(Component.translatable("dragscroll.config.wheel_setup"),
-                        b -> this.minecraft.gui.setScreen(new WheelSetupScreen(this)))
+                        b -> this.minecraft.setScreen(new WheelSetupScreen(this)))
                         .pos(fieldLeft, 0).size(fieldWidth, BUTTON_H).build();
                 rows.add(new Row(this.addRenderableWidget(setup), y));
                 y += ROW_BUTTON_GAP;
@@ -338,7 +338,7 @@ public final class DragScrollConfigScreen extends Screen {
             SafeMode.clearDisableFile();
         }
         captureSaved();
-        this.minecraft.gui.setScreen(this.parent);
+        this.minecraft.setScreen(this.parent);
     }
 
     /** Cancel / ESC: toggles apply live, so what was not saved is undone. */
@@ -348,7 +348,7 @@ public final class DragScrollConfigScreen extends Screen {
         for (int i = 0; i < all.size(); i++) {
             all.get(i).set.accept(savedToggles[i]);
         }
-        this.minecraft.gui.setScreen(this.parent);
+        this.minecraft.setScreen(this.parent);
     }
 
     // =====================================================================
@@ -406,7 +406,7 @@ public final class DragScrollConfigScreen extends Screen {
     }
 
     private static boolean isPrimary(int button) {
-        return button == 0 || button == 1;
+        return button == 0;
     }
 
     // =====================================================================
@@ -414,23 +414,23 @@ public final class DragScrollConfigScreen extends Screen {
     // =====================================================================
 
     @Override
-    public void extractRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
+    public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
+        super.render(graphics, mouseX, mouseY, partialTick);
         int centerX = this.width / 2;
-        graphics.centeredText(this.font, this.title, centerX, 8, 0xFFFFFFFF);
+        graphics.drawCenteredString(this.font, this.title, centerX, 8, 0xFFFFFFFF);
         for (Text text : texts) {
             int y = contentY(text.rel);
             for (FormattedCharSequence line : this.font.split(text.text, this.wrapWidth)) {
                 if (y + this.font.lineHeight > this.listTop && y < this.listBottom) {
-                    graphics.centeredText(this.font, line, centerX, y, text.color);
+                    graphics.drawCenteredString(this.font, line, centerX, y, text.color);
                 }
                 y += this.font.lineHeight;
             }
         }
         drawScrollbar(graphics);
-        super.extractRenderState(graphics, mouseX, mouseY, partialTick);
     }
 
-    private void drawScrollbar(GuiGraphicsExtractor g) {
+    private void drawScrollbar(GuiGraphics g) {
         int max = this.maxScroll();
         if (max <= 0) {
             return;

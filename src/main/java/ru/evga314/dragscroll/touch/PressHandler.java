@@ -65,8 +65,8 @@ public final class PressHandler {
      */
     public static boolean onButton(MouseHandlerAccess mouse, MouseButtonInfo info, int action) {
         Minecraft mc = Minecraft.getInstance();
-        Screen screen = mc.gui.screen();
-        boolean noOverlay = mc.gui.overlay() == null;
+        Screen screen = mc.screen;
+        boolean noOverlay = mc.getOverlay() == null;
 
         // In game, FancyMenu's menu bar may still be "hovered" from the pause
         // menu and would eat this click.
@@ -216,7 +216,7 @@ public final class PressHandler {
     /** Finger up: end the touch, start inertia after a swipe. */
     private static void endTouch() {
         XaeroMapZoomOverlay.endDrag();
-        Screen screen = Minecraft.getInstance().gui.screen();
+        Screen screen = Minecraft.getInstance().screen;
         // Sliders held by the touch are released now. YACL taps are released
         // in onButton RETURN, after the replayed click.
         if (TouchState.nativeSliderHeld || TouchState.sliderGestureLocked) {
@@ -566,7 +566,7 @@ public final class PressHandler {
      * when the screen reports the release as handled.)
      */
     public static void afterButton(MouseButtonInfo info, int action) {
-        Screen screen = Minecraft.getInstance().gui.screen();
+        Screen screen = Minecraft.getInstance().screen;
         // MaLiLib taps were already replayed before the release.
         if (MalilibCompat.isMalilibScreen(screen) || ScreenKind.of(screen).malilibFamily) {
             return;
@@ -577,7 +577,7 @@ public final class PressHandler {
         DeferredClick.finish();
         // YACL sliders: the replayed tap set mouseDown without a matching
         // release; clear it so the next tap elsewhere does not move the slider.
-        Screen afterReplay = Minecraft.getInstance().gui.screen();
+        Screen afterReplay = Minecraft.getInstance().screen;
         if (ScreenKind.of(afterReplay).yacl) {
             Sliders.forceReleaseAll(afterReplay);
             if (Debug.on()) Debug.log("PressHandler.afterButton", "YACL_SLIDER_RELEASE_AFTER_TAP");

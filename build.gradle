@@ -1,5 +1,5 @@
 plugins {
-	id 'net.fabricmc.fabric-loom' version "${loom_version}"
+	id 'fabric-loom' version "${loom_version}"
 	id 'maven-publish'
 }
 
@@ -19,28 +19,32 @@ repositories {
 
 dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	// Minecraft 26.1+ is unobfuscated – no mappings line
-	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
-	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
-	compileOnly "com.terraformersmc:modmenu:${project.modmenu_version}"
+	mappings loom.officialMojangMappings()
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+	modCompileOnly "com.terraformersmc:modmenu:${project.modmenu_version}"
+	// Optional mods the compat mixins target: compile only, so the mixin
+	// remapper can rename their overridden MC methods. Not in git: put
+	// Sodium, Jade, Cloth Config and TRender (from EntityCulling) jars here.
+	modCompileOnly fileTree(dir: "compile-libs", include: "*.jar")
 }
 
 processResources {
 	inputs.property "version", project.version
 
 	filesMatching("fabric.mod.json") {
-		expand "version": inputs.properties.version
+		expand(["version": inputs.properties.version]) { escapeBackslash = true }
 	}
 }
 
 tasks.withType(JavaCompile).configureEach {
-	it.options.release = 25
+	it.options.release = 21
 }
 
 java {
 	withSourcesJar()
-	sourceCompatibility = JavaVersion.VERSION_25
-	targetCompatibility = JavaVersion.VERSION_25
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
 }
 
 jar {

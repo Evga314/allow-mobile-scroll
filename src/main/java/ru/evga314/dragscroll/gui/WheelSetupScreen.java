@@ -1,6 +1,6 @@
 package ru.evga314.dragscroll.gui;
 
-import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractSliderButton;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
@@ -411,18 +411,18 @@ public final class WheelSetupScreen extends Screen {
         DragScrollConfig.setWheelSpeed(this.speed);
         DragScrollConfig.setWheelRepositionHoldMs(this.holdMs);
         DragScrollConfig.save();
-        this.minecraft.gui.setScreen(this.parent);
+        this.minecraft.setScreen(this.parent);
     }
 
     @Override
     public void onClose() {
-        this.minecraft.gui.setScreen(this.parent);
+        this.minecraft.setScreen(this.parent);
     }
 
     @Override
     public boolean mouseClicked(MouseButtonEvent event, boolean doubleClick) {
         int btn = event.button();
-        if ((btn == 0 || btn == 1) && isOverPreview(event.x(), event.y())) {
+        if (btn == 0 && isOverPreview(event.x(), event.y())) {
             // The preview itself owns the press. Do not pass this click through
             // to the setup widgets: a mobile launcher reports a finger press
             // as LMB down, followed by mouse-drag events while the finger moves.
@@ -464,25 +464,25 @@ public final class WheelSetupScreen extends Screen {
     }
 
     @Override
-    public void extractRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
-        super.extractRenderState(graphics, mouseX, mouseY, partialTick);
+    public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
+        super.render(graphics, mouseX, mouseY, partialTick);
 
         if (!this.uiHidden) {
-            graphics.text(this.font, this.title, MARGIN, MARGIN, 0xFFFFFFFF, false);
-            graphics.text(this.font,
+            graphics.drawString(this.font, this.title, MARGIN, MARGIN, 0xFFFFFFFF, false);
+            graphics.drawString(this.font,
                     Component.translatable("dragscroll.wheel.setup.pos_x_range", 0, Math.max(0, this.width)).getString(),
                     MARGIN + FIELD_W + RESET_W + 12, MARGIN + 14 + 6, 0xFFAAAAAA, false);
-            graphics.text(this.font,
+            graphics.drawString(this.font,
                     Component.translatable("dragscroll.wheel.setup.pos_y_range", 0, Math.max(0, this.height)).getString(),
                     MARGIN + FIELD_W + RESET_W + 12, MARGIN + 14 + ROW_GAP + 6, 0xFFAAAAAA, false);
-            graphics.text(this.font,
+            graphics.drawString(this.font,
                     Component.translatable("dragscroll.wheel.setup.hold_ms_range",
                             DragScrollConfig.MIN_WHEEL_REPOSITION_HOLD_MS,
                             DragScrollConfig.MAX_WHEEL_REPOSITION_HOLD_MS).getString(),
                     MARGIN + FIELD_W + RESET_W + 12, MARGIN + 14 + ROW_GAP * 2 + 6, 0xFFAAAAAA, false);
-            graphics.text(this.font, "X", MARGIN - 1, MARGIN + 4, 0xFFCCCCCC, false);
-            graphics.text(this.font, "Y", MARGIN - 1, MARGIN + 4 + ROW_GAP, 0xFFCCCCCC, false);
-            graphics.text(this.font, "ms", MARGIN - 1, MARGIN + 4 + ROW_GAP * 2, 0xFFCCCCCC, false);
+            graphics.drawString(this.font, "X", MARGIN - 1, MARGIN + 4, 0xFFCCCCCC, false);
+            graphics.drawString(this.font, "Y", MARGIN - 1, MARGIN + 4 + ROW_GAP, 0xFFCCCCCC, false);
+            graphics.drawString(this.font, "ms", MARGIN - 1, MARGIN + 4 + ROW_GAP * 2, 0xFFCCCCCC, false);
         }
 
         int[] b = previewBoundsInt();

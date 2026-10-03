@@ -2,7 +2,7 @@
 	"required": false,
 	"package": "ru.evga314.dragscroll.mixin",
 	"plugin": "ru.evga314.dragscroll.loader.DragScrollMixinPlugin",
-	"compatibilityLevel": "JAVA_25",
+	"compatibilityLevel": "JAVA_21",
 	"client": [
 		"compat.jade.JadeSmoothScrollableListMixin"
 	],

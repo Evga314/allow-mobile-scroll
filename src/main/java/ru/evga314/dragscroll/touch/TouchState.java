@@ -70,9 +70,9 @@ public final class TouchState {
     public static double cursorBeforeTeleportX = Double.NaN;
     public static double cursorBeforeTeleportY = Double.NaN;
 
-    /** SDL3 reports the left button as 1; 0 is accepted from layers that still use the GLFW value. */
+    /** GLFW reports the left button as 0 (1 is the right button). */
     public static boolean isLeftButton(int button) {
-        return button == 0 || button == 1;
+        return button == 0;
     }
 
     public static boolean hasPressPoint() {

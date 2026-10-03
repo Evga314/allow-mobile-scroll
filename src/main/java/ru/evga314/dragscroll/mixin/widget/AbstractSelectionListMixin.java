@@ -16,7 +16,7 @@ import ru.evga314.dragscroll.touch.TouchState;
 @Mixin(AbstractSelectionList.class)
 public abstract class AbstractSelectionListMixin {
 
-    @Inject(method = {"ensureVisible", "centerScrollOn", "scrollTo", "scrollToEntry"},
+    @Inject(method = {"centerScrollOn", "scrollToEntry"},
             at = @At("HEAD"), cancellable = true, require = 0)
     private void dragscroll$blockAutoScroll(CallbackInfo ci) {
         if (!SafeMode.bypass() && TouchState.active && TouchState.currentTouchDragged) {

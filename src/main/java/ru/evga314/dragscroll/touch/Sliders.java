@@ -24,7 +24,9 @@ public final class Sliders {
     /** Boolean fields that hold a drag state in the slider implementations seen so far. */
     private static final String[] DRAG_FLAGS = {
             "dragging", "canChangeValue", "sliding", "selected",
-            "isDragging", "held", "activeDrag", "mouseDown"
+            "isDragging", "held", "activeDrag", "mouseDown",
+            // AbstractSliderButton.dragging / canChangeValue at runtime (intermediary)
+            "field_62464", "field_41796"
     };
 
     /** Drag-state fields of a slider class, looked up once. */

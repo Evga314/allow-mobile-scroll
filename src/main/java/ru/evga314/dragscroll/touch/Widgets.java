@@ -1,10 +1,10 @@
 package ru.evga314.dragscroll.touch;
 
 import net.minecraft.client.gui.components.AbstractScrollArea;
+import net.minecraft.client.gui.components.AbstractSliderButton;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.events.ContainerEventHandler;
 import net.minecraft.client.gui.components.events.GuiEventListener;
-import net.minecraft.client.gui.components.tabs.TabNavigationBar;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import ru.evga314.dragscroll.access.ScrollAreaAccess;
@@ -68,12 +68,11 @@ public final class Widgets {
     // =====================================================================
 
     /**
-     * Tab bars (TabNavigationBar, MenuTabBar) are AbstractScrollArea
-     * containers but never scroll vertically. Easy Install's project page has
-     * one across the top; picking it swallowed the drags meant for the page.
+     * Tab bars never scroll vertically. In 1.21.11 TabNavigationBar is not an
+     * AbstractScrollArea; mods may still ship scrolling tab bars of their own.
      */
     private static boolean isScrollList(AbstractScrollArea area) {
-        return !(area instanceof TabNavigationBar);
+        return !Widgets.lowerName(area).contains("tabbar");
     }
 
     /** Visits every AbstractScrollArea under {@code node}, tab bars included. */
@@ -353,7 +352,7 @@ public final class Widgets {
         if (root == null) {
             return false;
         }
-        if (lowerName(root).contains("slider")) {
+        if (root instanceof AbstractSliderButton || lowerName(root).contains("slider")) {
             try {
                 return root.isMouseOver(x, y);
             } catch (Throwable ignored) {

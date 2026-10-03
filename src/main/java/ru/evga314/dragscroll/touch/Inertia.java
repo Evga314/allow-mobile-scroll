@@ -133,7 +133,7 @@ public final class Inertia {
             return;
         }
         Minecraft client = Minecraft.getInstance();
-        if (client.gui == null || screen == null || client.gui.screen() != screen || client.gui.overlay() != null) {
+        if (client.gui == null || screen == null || client.screen != screen || client.getOverlay() != null) {
             stop();
             return;
         }

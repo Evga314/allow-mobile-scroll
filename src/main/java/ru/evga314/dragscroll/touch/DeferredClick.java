@@ -73,7 +73,7 @@ public final class DeferredClick {
         // a replayed tap would press a button of a screen that is gone.
         try {
             Minecraft mc = Minecraft.getInstance();
-            if (mc.gui == null || mc.gui.screen() != target) {
+            if (mc.gui == null || mc.screen != target) {
                 return;
             }
         } catch (Throwable ignored) {

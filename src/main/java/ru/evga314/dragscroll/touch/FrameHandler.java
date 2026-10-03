@@ -39,8 +39,8 @@ public final class FrameHandler {
     public static void beforeMovement(MouseHandlerAccess mouse) {
         TouchState.moved = false;
         Minecraft mc = Minecraft.getInstance();
-        Screen screen = mc.gui.screen();
-        boolean noOverlay = mc.gui.overlay() == null;
+        Screen screen = mc.screen;
+        boolean noOverlay = mc.getOverlay() == null;
         ScreenKind kind = ScreenKind.of(screen);
 
         if (MalilibCompat.isMalilibScreen(screen)) {

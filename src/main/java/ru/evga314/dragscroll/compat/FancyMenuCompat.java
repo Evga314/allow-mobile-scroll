@@ -246,7 +246,7 @@ public final class FancyMenuCompat {
         }
         try {
             Minecraft mc = Minecraft.getInstance();
-            if (mc.gui == null || mc.gui.screen() != coastScreen || mc.gui.overlay() != null
+            if (mc.gui == null || mc.screen != coastScreen || mc.getOverlay() != null
                     || TouchState.leftButtonHeld) {
                 stopCoast();
                 return;
@@ -379,8 +379,7 @@ public final class FancyMenuCompat {
                 for (int w = windows.size() - 1; w >= 0; w--) {
                     Object window = windows.get(w);
                     if (!Boolean.TRUE.equals(Reflect.invokePublic(window, "isVisible"))
-                            || !Boolean.TRUE.equals(window.getClass().getMethod("isMouseOver", double.class, double.class)
-                                    .invoke(window, x, y))) {
+                            || !(window instanceof GuiEventListener listener) || !listener.isMouseOver(x, y)) {
                         continue;
                     }
                     if (!(Reflect.invokePublic(window, "getScreen") instanceof GuiEventListener body)) {

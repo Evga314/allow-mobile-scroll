@@ -57,7 +57,7 @@ public final class DragScrollClient implements ClientModInitializer {
 
     /** A new screen: nothing of the previous screen's gesture may carry over. */
     private static void onClientTick(Minecraft client) {
-        Screen screen = client.gui != null ? client.gui.screen() : null;
+        Screen screen = client.gui != null ? client.screen : null;
         if (screen != lastScreen) {
             lastScreen = screen;
             Inertia.stop();
@@ -93,7 +93,7 @@ public final class DragScrollClient implements ClientModInitializer {
         }
         try {
             safeModeNoticeShown = true;
-            SystemToast.addOrUpdate(client.gui.toastManager(), SAFE_MODE_TOAST,
+            SystemToast.addOrUpdate(client.getToastManager(), SAFE_MODE_TOAST,
                     Component.translatable("dragscroll.safemode.toast.title"),
                     Component.translatable("dragscroll.safemode.toast.body"));
         } catch (Throwable ignored) {

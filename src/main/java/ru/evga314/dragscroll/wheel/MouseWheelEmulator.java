@@ -2,14 +2,15 @@ package ru.evga314.dragscroll.wheel;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
+import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents;
 import net.minecraft.client.KeyMapping;
-import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractScrollArea;
 import net.minecraft.client.gui.components.events.ContainerEventHandler;
 import net.minecraft.client.gui.components.events.GuiEventListener;
+import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
 import net.minecraft.client.input.KeyEvent;
@@ -43,8 +44,8 @@ public final class MouseWheelEmulator {
 
     public static final String TOGGLE_KEY_ID = "key.dragscroll.wheel_emulator";
 
-    /** SDL3 key code of keypad divide (not printable, so it never types into a text field). */
-    private static final int KEY_KP_DIVIDE = 84;
+    /** GLFW key code of keypad divide (not printable, so it never types into a text field). */
+    private static final int KEY_KP_DIVIDE = 331;
 
     /** Finger travel (GUI px) of one wheel notch. */
     private static final double PIXELS_PER_NOTCH = 16.0;
@@ -89,8 +90,8 @@ public final class MouseWheelEmulator {
     private static double grabOffsetY;
 
     public static void init() {
-        toggleKey = new KeyMapping(TOGGLE_KEY_ID, InputConstants.Type.KEYBOARD, KEY_KP_DIVIDE, KeyMapping.Category.MISC);
-        KeyMappingHelper.registerKeyMapping(toggleKey);
+        toggleKey = new KeyMapping(TOGGLE_KEY_ID, InputConstants.Type.KEYSYM, KEY_KP_DIVIDE, KeyMapping.Category.MISC);
+        KeyBindingHelper.registerKeyBinding(toggleKey);
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             // The key only toggles the wheel on screens (handled by the screen
@@ -109,7 +110,7 @@ public final class MouseWheelEmulator {
                         toggle();
                     }
                 });
-                ScreenEvents.afterForeground(screen).register(MouseWheelEmulator::render);
+                ScreenEvents.afterRender(screen).register(MouseWheelEmulator::render);
             } catch (Throwable t) {
                 DragScrollClient.LOGGER.warn("Mouse-wheel emulator hook failed", t);
             }
@@ -235,7 +236,7 @@ public final class MouseWheelEmulator {
         String name = cls.getName().toLowerCase(Locale.ROOT);
         String simple = cls.getSimpleName().toLowerCase(Locale.ROOT);
         // Correct without inverting: chat, this mod's own screens, TRender/Cotton.
-        if (name.contains("chatscreen") || name.startsWith("ru.evga314.dragscroll")
+        if (ChatScreen.class.isAssignableFrom(cls) || name.startsWith("ru.evga314.dragscroll")
                 || name.contains("entityculling") || name.contains("trender")
                 || name.contains("cottonclientscreen") || name.contains("io.github.cottonmc")
                 || name.contains("cotton.gui")
@@ -246,7 +247,7 @@ public final class MouseWheelEmulator {
                 || hierarchyContains(cls, "craft_config", "craftconfig", "craft.config")
                 || name.contains("terraformersmc.modmenu") || simple.equals("modsscreen")
                 || hierarchyContains(cls, "collective")
-                || hierarchyContains(cls, "creativemodeinventoryscreen")
+                || CreativeModeInventoryScreen.class.isAssignableFrom(cls)
                 || name.startsWith("net.minecraft.")
                 || name.contains("tconfig.gui") || name.contains("tconfigscreen")
                 || name.contains("entitymodelfeatures") || name.contains("entity_texture_features")
@@ -459,7 +460,7 @@ public final class MouseWheelEmulator {
     // Rendering
     // =====================================================================
 
-    private static void render(Screen screen, GuiGraphicsExtractor graphics, int mouseX, int mouseY, float tickDelta) {
+    private static void render(Screen screen, GuiGraphics graphics, int mouseX, int mouseY, float tickDelta) {
         if (!isEnabled() || !shouldShow(screen)) {
             return;
         }
@@ -481,7 +482,7 @@ public final class MouseWheelEmulator {
     }
 
     /** Draws the wheel; shared with the setup screen's preview. */
-    public static void drawWheel(GuiGraphicsExtractor g, int x, int y, int w, int h, int opacityPct, double phase) {
+    public static void drawWheel(GuiGraphics g, int x, int y, int w, int h, int opacityPct, double phase) {
         int a = Math.max(0, Math.min(255, opacityPct * 255 / 100)) << 24;
         int right = x + w;
         int bottom = y + h;

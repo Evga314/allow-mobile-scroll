@@ -1,5 +1,6 @@
 package ru.evga314.dragscroll.touch;
 
+import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.client.gui.screens.Screen;
 
 import java.util.Locale;
@@ -56,7 +57,8 @@ public final class ScreenKind {
     private ScreenKind(Class<?> type) {
         String name = type.getName().toLowerCase(Locale.ROOT);
 
-        chat = name.contains("chatscreen");
+        // MC classes have intermediary names at runtime (class_408): match by type.
+        chat = ChatScreen.class.isAssignableFrom(type);
         cloth = name.contains("clothconfig") || name.contains("cloth_config")
                 || name.contains("me.shedaniel.autoconfig");
         sodium = name.contains("sodium")

@@ -42,8 +42,8 @@ public final class MoveHandler {
     /** Returns true when vanilla must not see this movement. */
     public static boolean onMove(MouseHandlerAccess mouse, double xpos, double ypos) {
         Minecraft mc = Minecraft.getInstance();
-        Screen screen = mc.gui.screen();
-        if (screen == null || mc.gui.overlay() != null) {
+        Screen screen = mc.screen;
+        if (screen == null || mc.getOverlay() != null) {
             return false;
         }
         Window window = mc.getWindow();
@@ -144,8 +144,8 @@ public final class MoveHandler {
                 || Math.abs(fromY) <= Math.abs(fromX) * SLIDER_AXIS_DOMINANCE) {
             return false;
         }
-        Screen screen = Minecraft.getInstance().gui.screen();
-        if (screen == null || Minecraft.getInstance().gui.overlay() != null) {
+        Screen screen = Minecraft.getInstance().screen;
+        if (screen == null || Minecraft.getInstance().getOverlay() != null) {
             return false;
         }
         AbstractScrollArea area = Widgets.findScrollArea(screen, x, y);

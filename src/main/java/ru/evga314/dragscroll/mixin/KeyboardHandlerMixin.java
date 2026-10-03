@@ -26,7 +26,7 @@ public abstract class KeyboardHandlerMixin {
         }
         try {
             Minecraft mc = Minecraft.getInstance();
-            if (mc.gui == null || mc.gui.screen() == null || handle != mc.getWindow().handle()) {
+            if (mc.gui == null || mc.screen == null || handle != mc.getWindow().handle()) {
                 return;
             }
             MouseWheelEmulator.onKeyPressEarly(event);

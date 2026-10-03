@@ -2,7 +2,7 @@ package ru.evga314.dragscroll.compat;
 
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import ru.evga314.dragscroll.DragScrollClient;
@@ -47,7 +47,7 @@ public final class XaeroMapZoomOverlay {
                 return;
             }
             try {
-                ScreenEvents.afterForeground(screen).register(XaeroMapZoomOverlay::render);
+                ScreenEvents.afterRender(screen).register(XaeroMapZoomOverlay::render);
             } catch (Throwable t) {
                 DragScrollClient.LOGGER.warn("Xaero zoom overlay render hook failed", t);
             }
@@ -236,7 +236,7 @@ public final class XaeroMapZoomOverlay {
     // Rendering
     // =====================================================================
 
-    private static void render(Screen screen, GuiGraphicsExtractor graphics, int mouseX, int mouseY, float tickProgress) {
+    private static void render(Screen screen, GuiGraphics graphics, int mouseX, int mouseY, float tickProgress) {
         if (!isEnabled()) {
             return;
         }
@@ -269,7 +269,7 @@ public final class XaeroMapZoomOverlay {
         graphics.fill(thumbX + THUMB_W - 1, thumbY, thumbX + THUMB_W, thumbY + THUMB_H, 0xFF555555);
 
         var font = Minecraft.getInstance().font;
-        graphics.centeredText(font, Component.literal("+"), centerX, y - 12, 0xFFFFFFFF);
-        graphics.centeredText(font, Component.literal("-"), centerX, y + h + 2, 0xFFFFFFFF);
+        graphics.drawCenteredString(font, Component.literal("+"), centerX, y - 12, 0xFFFFFFFF);
+        graphics.drawCenteredString(font, Component.literal("-"), centerX, y + h + 2, 0xFFFFFFFF);
     }
 }
