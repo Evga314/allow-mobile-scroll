@@ -1,5 +1,6 @@
 package ru.evga314.dragscroll.mixin;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.MouseHandler;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.input.MouseButtonEvent;
@@ -13,8 +14,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import ru.evga314.dragscroll.access.MouseHandlerAccess;
 import ru.evga314.dragscroll.loader.SafeMode;
 import ru.evga314.dragscroll.touch.FrameHandler;
+import ru.evga314.dragscroll.touch.GrabJumpGuard;
 import ru.evga314.dragscroll.touch.MoveHandler;
 import ru.evga314.dragscroll.touch.PressHandler;
+import ru.evga314.dragscroll.touch.TouchState;
 
 /**
  * Entry point of the touch handling: forwards MouseHandler's events to the
@@ -29,6 +32,12 @@ public abstract class MouseHandlerMixin implements MouseHandlerAccess {
     private double accumulatedDX;
     @Shadow
     private double accumulatedDY;
+    @Shadow
+    private double xpos;
+    @Shadow
+    private double ypos;
+    @Shadow
+    private boolean mouseGrabbed;
 
     @Override
     public void dragscroll$clearAccumulatedMovement() {
@@ -42,6 +51,9 @@ public abstract class MouseHandlerMixin implements MouseHandlerAccess {
             return;
         }
         try {
+            if (action == InputConstants.PRESS && info != null && TouchState.isLeftButton(info.button())) {
+                GrabJumpGuard.onLeftPress();
+            }
             if (PressHandler.onButton(this, info, action)) {
                 ci.cancel();
             }
@@ -90,12 +102,34 @@ public abstract class MouseHandlerMixin implements MouseHandlerAccess {
             return;
         }
         try {
+            if (this.mouseGrabbed && GrabJumpGuard.isStaleJump(xrel, yrel)) {
+                ci.cancel();
+                return;
+            }
             if (MoveHandler.onMove(this, xpos, ypos)) {
                 ci.cancel();
             }
         } catch (Throwable t) {
             SafeMode.reportFailure("MouseHandler.onMove", t);
         }
+    }
+
+    /** Before vanilla moves the cursor to the center: xpos/ypos are still the tap point. */
+    @Inject(method = "grabMouse", at = @At("HEAD"))
+    private void dragscroll$beforeGrab(CallbackInfo ci) {
+        if (SafeMode.bypass() || this.mouseGrabbed) {
+            return;
+        }
+        try {
+            GrabJumpGuard.onGrab(this.xpos, this.ypos);
+        } catch (Throwable t) {
+            SafeMode.reportFailure("MouseHandler.grabMouse", t);
+        }
+    }
+
+    @Inject(method = "releaseMouse", at = @At("HEAD"))
+    private void dragscroll$beforeRelease(CallbackInfo ci) {
+        GrabJumpGuard.onRelease();
     }
 
     @Inject(method = "handleAccumulatedMovement", at = @At("HEAD"))
