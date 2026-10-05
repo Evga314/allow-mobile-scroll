@@ -1,6 +1,8 @@
 package ru.evga314.dragscroll.mixin;
 
 import com.mojang.blaze3d.platform.InputConstants;
+import com.mojang.blaze3d.platform.Window;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.MouseHandler;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.input.MouseButtonEvent;
@@ -121,7 +123,8 @@ public abstract class MouseHandlerMixin implements MouseHandlerAccess {
             return;
         }
         try {
-            GrabJumpGuard.onGrab(this.xpos, this.ypos);
+            Window window = Minecraft.getInstance().getWindow();
+            GrabJumpGuard.onGrab(this.xpos, this.ypos, window.getScreenWidth() / 2.0, window.getScreenHeight() / 2.0);
         } catch (Throwable t) {
             SafeMode.reportFailure("MouseHandler.grabMouse", t);
         }
