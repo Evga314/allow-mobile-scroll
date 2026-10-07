@@ -157,4 +157,4 @@ build/libs/
 **Release**
 
 
-Basic scrolling for standard vanilla Minecraft GUI screens is currently working fine, a lot of mods and libraries have support. Also you can use our mouse wheel simulator to scroll some of unsupported mods
+Basic scrolling for standard vanilla Minecraft GUI screens is currently working fine, a lot of mods and libraries are already supported. Also you can use our mouse wheel simulator to scroll some of unsupported mods
