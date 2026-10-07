@@ -5,17 +5,12 @@ package ru.evga314.dragscroll.touch;
  * Game", sign "Done", ...).
  *
  * <p>The launcher sends a tap as press + release 33 ms later and puts its
- * cursor back on the tap point for the release. Its relative steps are
- * measured from the last position it sent (the tap point), which the grab
- * does not update. Depending on which comes first, the grab or the release,
- * the first in-game step carries a jump:
- * <ul>
- * <li>Mojo before 2026-10-02: the grab resets the cursor to 0,0, jump =
- * (0 - tap point), the camera turns towards the top-left corner;</li>
- * <li>Mojo since 2026-10-02 (SDL cursor warp): the cursor follows the game's
- * warp to the window center, jump = (center - tap point).</li>
- * </ul>
- * That one step is dropped here; nothing else is touched.
+ * cursor back on the tap point for the release. On grab the game moves the
+ * cursor to the window center (glfwSetCursorPos, which the launcher follows).
+ * When the release comes after that, the launcher's cursor is back on the
+ * tap point, and its next absolute position is a step of (tap point - center)
+ * from where the game expects the cursor. That one step is dropped here;
+ * nothing else is touched.
  */
 public final class GrabJumpGuard {
     private GrabJumpGuard() {
@@ -64,12 +59,12 @@ public final class GrabJumpGuard {
         armed = false;
     }
 
-    /** A grabbed (relative) step. Returns true when it is the launcher's jump. */
+    /** A grabbed step (against the stored position). Returns true when it is the launcher's jump. */
     public static boolean isStaleJump(double xrel, double yrel) {
         if (!armed || xrel == 0.0 && yrel == 0.0) {
             return false;
         }
-        if (matches(xrel, yrel, -tapX, -tapY) || matches(xrel, yrel, centerX - tapX, centerY - tapY)) {
+        if (matches(xrel, yrel, tapX - centerX, tapY - centerY)) {
             armed = false;
             if (Debug.on()) Debug.log("GrabJumpGuard", "DROPPED rel=" + xrel + "," + yrel);
             return true;
