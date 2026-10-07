@@ -188,7 +188,7 @@ public final class PressHandler {
         // Sodium: keep the locked column across the launcher's repeated
         // presses of one screen-level session; anything else clears it.
         boolean keepSodiumLock = TouchState.active && TouchState.fallbackScreen == screen
-                && kind.sodium && SodiumCompat.contentLocked;
+                && kind.columnLock && SodiumCompat.contentLocked;
         SodiumCompat.resetGrab();
         ReesesCompat.resetGrab();
         ReiCompat.resetGrab();
@@ -263,7 +263,7 @@ public final class PressHandler {
         }
         // The Sodium column lock belongs to one swipe; the coast already has
         // its coordinates.
-        if (screen != null && kind.sodium) {
+        if (screen != null && kind.columnLock) {
             SodiumCompat.unlockContent();
         }
         // Only the touch ends here; the scroll session stays for the next one.
@@ -356,7 +356,7 @@ public final class PressHandler {
             TouchState.nativeControlHeld = true;
             TouchState.nativeScrollbarHeld = overNativeBar || overCustomBar;
             TouchState.nativeSliderHeld = !TouchState.nativeScrollbarHeld;
-            if (kind.sodium) {
+            if (kind.columnLock) {
                 // A Sodium control is its own gesture; no stale column lock.
                 SodiumCompat.contentLocked = false;
             }
@@ -454,7 +454,7 @@ public final class PressHandler {
                 && !ChatCompat.isOutsideChatArea(screen, x, y)) {
             TouchState.lockedArea = null;
             TouchState.fallbackInverted = ScreenKind.of(screen).invertedScroll;
-            if (ScreenKind.of(screen).sodium) {
+            if (ScreenKind.of(screen).columnLock) {
                 SodiumCompat.lockX = x;
                 SodiumCompat.lockY = y;
                 SodiumCompat.contentLocked = true;

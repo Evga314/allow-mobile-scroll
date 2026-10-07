@@ -253,7 +253,7 @@ public final class FrameHandler {
             area = null;
             TouchState.currentTouchDragged = true;
             DeferredClick.cancel();
-            if (kind.sodium) {
+            if (kind.columnLock) {
                 SodiumCompat.lockContent(TouchState.pressX, TouchState.pressY);
             }
         } else {
@@ -265,7 +265,7 @@ public final class FrameHandler {
                     && !ChatCompat.isOutsideChatArea(screen, TouchState.pressX, TouchState.pressY)) {
                 // Only screen-level scrollers; a screen with several lists
                 // (Mod Menu) must never be scrolled as a whole.
-                if (kind.sodium) {
+                if (kind.columnLock) {
                     SodiumCompat.lockContent(TouchState.pressX, TouchState.pressY);
                 }
                 Drags.beginScreen(screen);
@@ -279,7 +279,7 @@ public final class FrameHandler {
         // Sideways noise is dropped; only the vertical step scrolls.
         double step = Math.abs(dx) > Math.abs(dy) * 1.25 && Math.abs(dy) < SIDEWAYS_NOISE_PX ? 0.0 : dy;
         Inertia.pushSample(step);
-        boolean sodiumLocked = SodiumCompat.contentLocked && kind.sodium;
+        boolean sodiumLocked = SodiumCompat.contentLocked && kind.columnLock;
         Inertia.guiX = sodiumLocked ? SodiumCompat.lockX : x;
         Inertia.guiY = sodiumLocked ? SodiumCompat.lockY : y;
         // The wheel emulator sends its notches to the list the finger scrolls.

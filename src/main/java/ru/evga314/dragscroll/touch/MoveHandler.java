@@ -244,7 +244,7 @@ public final class MoveHandler {
             if (Debug.on()) Debug.log("MoveHandler.onMove", "SODIUM_THUMB_NATIVE");
         } else if (kind.customScroll && !Widgets.hasMultipleScrollLists(screen)
                 && !ChatCompat.isOutsideChatArea(screen, px, py)) {
-            if (kind.sodium) {
+            if (kind.columnLock) {
                 SodiumCompat.lockContent(px, py);
             }
             startDragFromPress();

@@ -32,6 +32,11 @@ public final class ScreenKind {
     public final boolean reeses;
     /** REI's config screen (Cloth ScrollingContainer lists). */
     public final boolean rei;
+    /**
+     * Screens with several side-by-side lists scrolled through mouseScrolled:
+     * a drag keeps scrolling the list it started on, wherever the finger goes.
+     */
+    public final boolean columnLock;
     /** TRender / LibGui (Cotton) screens: EntityCulling, Skin Layers 3D, ... */
     public final boolean trender;
     /** Traben's tconfig (Entity Model / Texture Features). */
@@ -67,6 +72,7 @@ public final class ScreenKind {
         sodium = !reeses && name.contains("sodium")
                 && (name.contains("videosettings") || name.contains("option") || name.contains("gui"));
         rei = name.startsWith("me.shedaniel.rei.impl.client.gui.config.");
+        columnLock = sodium || reeses || rei;
         trender = name.contains("trender") || name.contains("cottonclientscreen") || name.contains("cotton.gui")
                 || name.contains("libgui") || name.contains("entityculling")
                 || name.contains("lightweightguidescription");
