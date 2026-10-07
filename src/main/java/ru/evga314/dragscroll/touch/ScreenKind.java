@@ -28,6 +28,10 @@ public final class ScreenKind {
     public final boolean cloth;
     /** Sodium's own option screens. */
     public final boolean sodium;
+    /** Reese's Sodium Options (replaces Sodium's video settings). */
+    public final boolean reeses;
+    /** REI's config screen (Cloth ScrollingContainer lists). */
+    public final boolean rei;
     /** TRender / LibGui (Cotton) screens: EntityCulling, Skin Layers 3D, ... */
     public final boolean trender;
     /** Traben's tconfig (Entity Model / Texture Features). */
@@ -59,8 +63,10 @@ public final class ScreenKind {
         chat = name.contains("chatscreen");
         cloth = name.contains("clothconfig") || name.contains("cloth_config")
                 || name.contains("me.shedaniel.autoconfig");
-        sodium = name.contains("sodium")
+        reeses = name.contains("reeses_sodium_options");
+        sodium = !reeses && name.contains("sodium")
                 && (name.contains("videosettings") || name.contains("option") || name.contains("gui"));
+        rei = name.startsWith("me.shedaniel.rei.impl.client.gui.config.");
         trender = name.contains("trender") || name.contains("cottonclientscreen") || name.contains("cotton.gui")
                 || name.contains("libgui") || name.contains("entityculling")
                 || name.contains("lightweightguidescription");
@@ -75,7 +81,7 @@ public final class ScreenKind {
 
         // This mod's own screens scroll the natural way with the inverted sign.
         boolean ownScreen = type.getName().startsWith("ru.evga314.dragscroll.gui.");
-        invertedScroll = chat || cloth || yacl || trender || easyInstall || ownScreen
+        invertedScroll = chat || cloth || yacl || trender || easyInstall || ownScreen || rei
                 || name.contains("sodium")
                 || name.contains("lambdynlights")
                 || name.contains("fzzy")

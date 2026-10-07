@@ -12,6 +12,8 @@ import ru.evga314.dragscroll.compat.ChatCompat;
 import ru.evga314.dragscroll.compat.ClothCompat;
 import ru.evga314.dragscroll.compat.FancyMenuCompat;
 import ru.evga314.dragscroll.compat.MalilibCompat;
+import ru.evga314.dragscroll.compat.ReesesCompat;
+import ru.evga314.dragscroll.compat.ReiCompat;
 import ru.evga314.dragscroll.compat.ShulkerCompat;
 import ru.evga314.dragscroll.compat.SodiumCompat;
 import ru.evga314.dragscroll.compat.TrenderCompat;
@@ -188,6 +190,8 @@ public final class PressHandler {
         boolean keepSodiumLock = TouchState.active && TouchState.fallbackScreen == screen
                 && kind.sodium && SodiumCompat.contentLocked;
         SodiumCompat.resetGrab();
+        ReesesCompat.resetGrab();
+        ReiCompat.resetGrab();
         if (!keepSodiumLock) {
             SodiumCompat.contentLocked = false;
         }
@@ -286,6 +290,18 @@ public final class PressHandler {
             grabCustomThumb(mouse);
             ClothCompat.applyThumb(screen, y);
             if (Debug.on()) Debug.log("PressHandler.onButton", "CLOTH_THUMB_GRAB x=" + x + " y=" + y);
+            return;
+        }
+        if (kind.reeses && ReesesCompat.isBarHover(screen, x, y)) {
+            grabCustomThumb(mouse);
+            ReesesCompat.applyThumb(screen, x, y);
+            if (Debug.on()) Debug.log("PressHandler.onButton", "REESES_THUMB_GRAB x=" + x + " y=" + y);
+            return;
+        }
+        if (kind.rei && ReiCompat.isBarHover(screen, x, y)) {
+            grabCustomThumb(mouse);
+            ReiCompat.applyThumb(screen, x, y);
+            if (Debug.on()) Debug.log("PressHandler.onButton", "REI_THUMB_GRAB x=" + x + " y=" + y);
             return;
         }
         if (kind.shulkerConfig && ShulkerCompat.isScrollbarHover(screen, x, y)) {
@@ -498,6 +514,11 @@ public final class PressHandler {
         if (kind.trender && TrenderCompat.barLocked && TrenderCompat.barClickSent) {
             DeferredClick.cancel();
             if (Debug.on()) Debug.log("PressHandler.decideClick", "TRENDER_BAR_SWALLOW");
+            return Click.SWALLOW;
+        }
+        // A thumb the mod drives: the bar's own click would jump it to the finger.
+        if ((kind.reeses || kind.rei) && TouchState.nativeScrollbarHeld) {
+            DeferredClick.cancel();
             return Click.SWALLOW;
         }
         if (Widgets.isVanillaInputOnly(screen)) {
