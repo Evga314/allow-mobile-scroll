@@ -8,6 +8,8 @@ import ru.evga314.dragscroll.compat.ChatCompat;
 import ru.evga314.dragscroll.compat.ClothCompat;
 import ru.evga314.dragscroll.compat.FancyMenuCompat;
 import ru.evga314.dragscroll.compat.MalilibCompat;
+import ru.evga314.dragscroll.compat.ReesesCompat;
+import ru.evga314.dragscroll.compat.ReiCompat;
 import ru.evga314.dragscroll.compat.ShulkerCompat;
 import ru.evga314.dragscroll.compat.SodiumCompat;
 import ru.evga314.dragscroll.compat.TrenderCompat;
@@ -115,8 +117,13 @@ public final class FrameHandler {
      * Returns true when this frame belonged to such a bar.
      */
     private static boolean driveOwnedScrollbar(MouseHandlerAccess mouse, Screen screen, ScreenKind kind) {
-        if (TouchState.nativeScrollbarHeld && TouchState.leftButtonHeld && (kind.cloth || kind.shulkerConfig || kind.sodium)) {
-            if (kind.cloth) {
+        if (TouchState.nativeScrollbarHeld && TouchState.leftButtonHeld
+                && (kind.cloth || kind.shulkerConfig || kind.sodium || kind.reeses || kind.rei)) {
+            if (kind.reeses) {
+                ReesesCompat.applyThumb(screen, guiX(), guiY());
+            } else if (kind.rei) {
+                ReiCompat.applyThumb(screen, guiX(), guiY());
+            } else if (kind.cloth) {
                 ClothCompat.applyThumb(screen, guiY());
             } else if (kind.shulkerConfig) {
                 ShulkerCompat.applyThumb(screen, guiY());

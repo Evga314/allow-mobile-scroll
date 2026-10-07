@@ -3,6 +3,7 @@ package ru.evga314.dragscroll.touch;
 import net.minecraft.client.gui.screens.Screen;
 import ru.evga314.dragscroll.compat.ChatCompat;
 import ru.evga314.dragscroll.compat.ClothCompat;
+import ru.evga314.dragscroll.compat.ReesesCompat;
 import ru.evga314.dragscroll.compat.TrenderCompat;
 
 /**
@@ -20,7 +21,10 @@ public final class ScreenScroll {
     /** Content pixels one mouseScrolled unit moves on this screen. */
     private static double pixelsPerUnit(Screen screen) {
         ScreenKind kind = ScreenKind.of(screen);
-        if (kind.cloth) {
+        if (kind.reeses) {
+            return ReesesCompat.PIXELS_PER_UNIT;
+        }
+        if (kind.cloth || kind.rei) {
             double step = ClothCompat.scrollStep(screen);
             if (step > 0.0) {
                 return step;
@@ -45,6 +49,10 @@ public final class ScreenScroll {
      */
     public static void dispatch(Screen screen, double x, double y, double units) {
         if (screen == null || units == 0.0) {
+            return;
+        }
+        // Reese's ScrollBarWidget casts the amount to int; its bar is moved directly.
+        if (ScreenKind.of(screen).reeses && ReesesCompat.scroll(screen, x, y, units)) {
             return;
         }
         double emit = ScreenKind.of(screen).trender ? TrenderCompat.consumeScrollDelta(units) : units;
