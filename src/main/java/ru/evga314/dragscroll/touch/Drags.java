@@ -49,7 +49,7 @@ public final class Drags {
         TouchState.lockedArea = null;
         TouchState.fallbackScreen = screen;
         TouchState.fallbackInverted = ScreenKind.of(screen).invertedScroll;
-        if (ScreenKind.of(screen).sodium) {
+        if (ScreenKind.of(screen).columnLock) {
             SodiumCompat.contentLocked = true;
         }
         Inertia.catchForDrag();
