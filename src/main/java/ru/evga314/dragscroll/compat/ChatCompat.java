@@ -21,6 +21,27 @@ public final class ChatCompat {
      */
     public static final double PIXELS_PER_SCROLL_UNIT = 63.0;
 
+    /** Chat lines one mouseScrolled unit scrolls (ChatScreen: amount * 7, cast to int). */
+    private static final double LINES_PER_UNIT = 7.0;
+
+    /** Fraction of a line not sent yet. */
+    private static double lineCarry;
+
+    /**
+     * Units to send now. ChatScreen.mouseScrolled scrolls (int) (amount * 7)
+     * lines, so the small per-frame steps of a finger were cut to 0; only
+     * whole lines are sent and the rest is carried to the next step.
+     */
+    public static double consumeScrollUnits(double units) {
+        lineCarry += units * LINES_PER_UNIT;
+        int lines = (int) lineCarry;
+        if (lines == 0) {
+            return 0.0;
+        }
+        lineCarry -= lines;
+        return lines / LINES_PER_UNIT;
+    }
+
     /** Slack around the chat box so a finger on its edge still counts. */
     private static final double MARGIN = 8.0;
 
