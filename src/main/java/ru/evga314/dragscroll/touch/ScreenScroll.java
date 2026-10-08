@@ -45,17 +45,20 @@ public final class ScreenScroll {
 
     /**
      * Sends {@code units} to the screen at (x, y). TRender's WScrollBar casts
-     * the delta to int, so it only gets whole units (the rest is carried).
+     * the delta to int, so it only gets whole units, and the chat only whole
+     * lines (the rest is carried).
      */
     public static void dispatch(Screen screen, double x, double y, double units) {
         if (screen == null || units == 0.0) {
             return;
         }
+        ScreenKind kind = ScreenKind.of(screen);
         // Reese's ScrollBarWidget casts the amount to int; its bar is moved directly.
-        if (ScreenKind.of(screen).reeses && ReesesCompat.scroll(screen, x, y, units)) {
+        if (kind.reeses && ReesesCompat.scroll(screen, x, y, units)) {
             return;
         }
-        double emit = ScreenKind.of(screen).trender ? TrenderCompat.consumeScrollDelta(units) : units;
+        double emit = kind.trender ? TrenderCompat.consumeScrollDelta(units)
+                : kind.chat ? ChatCompat.consumeScrollUnits(units) : units;
         if (emit == 0.0) {
             return;
         }
