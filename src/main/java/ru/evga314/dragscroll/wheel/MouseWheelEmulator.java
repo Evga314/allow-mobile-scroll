@@ -43,8 +43,8 @@ public final class MouseWheelEmulator {
 
     public static final String TOGGLE_KEY_ID = "key.dragscroll.wheel_emulator";
 
-    /** SDL3 key code of keypad divide (not printable, so it never types into a text field). */
-    private static final int KEY_KP_DIVIDE = 84;
+    /** GLFW key code of keypad divide (not printable, so it never types into a text field). */
+    private static final int KEY_KP_DIVIDE = 331;
 
     /** Finger travel (GUI px) of one wheel notch. */
     private static final double PIXELS_PER_NOTCH = 16.0;
@@ -89,7 +89,7 @@ public final class MouseWheelEmulator {
     private static double grabOffsetY;
 
     public static void init() {
-        toggleKey = new KeyMapping(TOGGLE_KEY_ID, InputConstants.Type.KEYBOARD, KEY_KP_DIVIDE, KeyMapping.Category.MISC);
+        toggleKey = new KeyMapping(TOGGLE_KEY_ID, InputConstants.Type.KEYSYM, KEY_KP_DIVIDE, KeyMapping.Category.MISC);
         KeyMappingHelper.registerKeyMapping(toggleKey);
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {

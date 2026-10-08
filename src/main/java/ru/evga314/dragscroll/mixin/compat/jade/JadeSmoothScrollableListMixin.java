@@ -13,7 +13,7 @@ import ru.evga314.dragscroll.loader.SafeMode;
 import ru.evga314.dragscroll.touch.Debug;
 
 /**
- * Jade config lists (SmoothScrollableList). Their mouseDragged first snaps
+ * Jade config lists (OptionsList). Their mouseDragged first snaps
  * the list back to Jade's smooth-scroll target and only then runs the vanilla
  * thumb drag. That target is only updated by Jade's own content drags, and
  * never when a smooth-scroll mod is installed, so every thumb grab jumped the
@@ -21,12 +21,10 @@ import ru.evga314.dragscroll.touch.Debug;
  * here from its real offset and Jade's smoothing state is synced with
  * forceSetScrollAmount; Jade's own body is skipped.
  *
- * <p>Jade 26.3.1 keeps the class in gui.config; later builds moved it to gui.
+ * <p>Jade for 26.2 has no SmoothScrollableList: the same code lives in
+ * OptionsList itself.
  */
-@Mixin(targets = {
-        "snownee.jade.gui.config.SmoothScrollableList",
-        "snownee.jade.gui.SmoothScrollableList"
-}, remap = true)
+@Mixin(targets = "snownee.jade.gui.config.OptionsList", remap = true)
 public abstract class JadeSmoothScrollableListMixin {
 
     /** A gap longer than this between drag events means a new thumb grab. */

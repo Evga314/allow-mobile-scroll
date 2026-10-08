@@ -99,12 +99,16 @@ public abstract class MouseHandlerMixin implements MouseHandlerAccess {
     }
 
     @Inject(method = "onMove", at = @At("HEAD"), cancellable = true)
-    private void dragscroll$onMove(long handle, double xpos, double ypos, double xrel, double yrel, CallbackInfo ci) {
+    private void dragscroll$onMove(long handle, double xpos, double ypos, CallbackInfo ci) {
         if (SafeMode.bypass()) {
             return;
         }
         try {
-            if (this.mouseGrabbed && GrabJumpGuard.isStaleJump(xrel, yrel)) {
+            // GLFW reports absolute positions; the step is taken against the
+            // stored one, which is moved too so the jump is absorbed.
+            if (this.mouseGrabbed && GrabJumpGuard.isStaleJump(xpos - this.xpos, ypos - this.ypos)) {
+                this.xpos = xpos;
+                this.ypos = ypos;
                 ci.cancel();
                 return;
             }

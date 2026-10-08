@@ -288,7 +288,7 @@ public final class TrenderCompat {
         }
         try {
             MouseButtonEvent last = DeferredClick.lastPointerEvent();
-            int button = last != null ? last.button() : 1;
+            int button = last != null ? last.button() : 0;
             MouseButtonEvent event = new MouseButtonEvent(x, y, new MouseButtonInfo(button, 0));
             DeferredClick.setLastPointerEvent(event);
             switch (action) {

@@ -422,7 +422,7 @@ public final class WheelSetupScreen extends Screen {
     @Override
     public boolean mouseClicked(MouseButtonEvent event, boolean doubleClick) {
         int btn = event.button();
-        if ((btn == 0 || btn == 1) && isOverPreview(event.x(), event.y())) {
+        if (btn == 0 && isOverPreview(event.x(), event.y())) {
             // The preview itself owns the press. Do not pass this click through
             // to the setup widgets: a mobile launcher reports a finger press
             // as LMB down, followed by mouse-drag events while the finger moves.

@@ -406,7 +406,7 @@ public final class DragScrollConfigScreen extends Screen {
     }
 
     private static boolean isPrimary(int button) {
-        return button == 0 || button == 1;
+        return button == 0;
     }
 
     // =====================================================================
